@@ -1,4 +1,4 @@
-http = require 'http'
+http      = require 'http'
 appConfig = require './config/app-config'
 
 app = appConfig.configure()
