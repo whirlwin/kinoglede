@@ -1,4 +1,10 @@
-indexController = require './index-controller'
+IndexController = require './index-controller'
 
-exports.setUpRoutes = (app) ->
-  app.get '/api', indexController.index
+class ApiRouter
+
+  indexController = new IndexController()
+
+  setUpRoutes: (app) ->
+    app.get '/api', indexController.index
+
+module.exports = ApiRouter

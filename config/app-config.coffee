@@ -1,13 +1,20 @@
-apiRouter     = require '../api/api-router'
-expressConfig = require './express-config'
-webappRouter  = require '../webapp/webapp-router'
+ApiRouter     = require '../api/api-router'
+ExpressConfig = require './express-config'
+WebappRouter  = require '../webapp/webapp-router'
 
-exports.configure = ->
-  ENV = process.env.ENV
+class AppConfig
 
-  app = expressConfig.configure ENV
+  expressConfig = new ExpressConfig()
+  apiRouter     = new ApiRouter()
+  webappRouter  = new WebappRouter()
 
-  apiRouter.setUpRoutes app
-  webappRouter.setUpRoutes app
+  configure: ->
+    ENV = process.env.ENV
+    app = expressConfig.configure ENV
 
-  app
+    apiRouter.setUpRoutes app
+    webappRouter.setUpRoutes app
+
+    app
+
+module.exports = AppConfig
