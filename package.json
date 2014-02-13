@@ -2,6 +2,11 @@
   "name": "application-name",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Øyvind Ødegård",
+    "url": "http://www.whirlwin.org"
+  },
+  "license": "MIT",
   "config": {
     "port": 3000
   },
@@ -10,7 +15,10 @@
   },
   "dependencies": {
     "express": "3.4.8",
-    "jade": "*",
-    "stylus": "*"
+    "jade": "1.1.5",
+    "stylus": "0.42.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.0.14"
   }
 }
