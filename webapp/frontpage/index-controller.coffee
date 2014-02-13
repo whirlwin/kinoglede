@@ -1,6 +1,6 @@
 class IndexController
 
   index: (req, res) ->
-    res.send 'foobar'
+    res.render 'frontpage/layout'
 
 module.exports = IndexController
