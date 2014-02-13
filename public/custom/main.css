@@ -2,6 +2,12 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+.btn {
+  letter-spacing: 1px;
+}
 .red-text {
   color: #c12e2a !important;
+}
+.slate-backround {
+  background-color: #eee;
 }
