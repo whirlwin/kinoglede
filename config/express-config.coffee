@@ -20,7 +20,11 @@ class ExpressConfig
     app.use require('stylus').middleware(APP_ROOT + 'public')
     app.use express.static(APP_ROOT + 'public')
     app.use app.router
-    app.use express.errorHandler() if ENV == 'development'
+
+    app.configure 'development', ->
+      app.use express.errorHandler()
+      app.locals.pretty = true;
+
     app
 
 module.exports = ExpressConfig
