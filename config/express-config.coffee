@@ -1,7 +1,9 @@
-crypto  = require 'crypto'
-express = require 'express'
-path    = require 'path'
-pkg     = require '../package'
+connectAssets = require 'connect-assets'
+crypto        = require 'crypto'
+express       = require 'express'
+path          = require 'path'
+stylus        = require 'stylus'
+pkg           = require '../package'
 
 class ExpressConfig
   configure: (ENV) ->
@@ -17,13 +19,14 @@ class ExpressConfig
     app.use express.methodOverride()
     app.use express.cookieParser(crypto.randomBytes(20).toString 'hex')
     app.use express.session()
-    app.use require('stylus').middleware(APP_ROOT + 'public')
+    app.use connectAssets(src: './webapp/assets', helperContext: app.locals)
     app.use express.static(APP_ROOT + 'public')
+    app.use stylus.middleware(APP_ROOT + 'public')
     app.use app.router
 
     app.configure 'development', ->
       app.use express.errorHandler()
-      app.locals.pretty = true;
+      app.locals.pretty = true
 
     app
 

@@ -1,10 +1,11 @@
-IndexController = require './frontpage/index-controller'
+PageController = require './page-controller'
 
 class WebappRouter
 
-  indexController = new IndexController()
+  pageController = new PageController()
 
   setUpRoutes: (app) ->
-    app.get '/*', indexController.index
+    app.get '/partials/:name', pageController.getPartial
+    app.get '/*',              pageController.index
 
 module.exports = WebappRouter

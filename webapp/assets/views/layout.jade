@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app='kinoglede')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -11,7 +11,7 @@ html
     div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
       div.container
         div.navbar-right.navbar-form
-          a.btn.btn-primary.btn-sm(href='/') Finn kinovenn &nbsp;
+          a.btn.btn-primary.btn-sm(href='/') Finn kinovenn&nbsp;
             span.glyphicon.glyphicon-heart
     div.jumbotron
       div.container
@@ -20,11 +20,12 @@ html
         p Finn en kinopartner til filmen&nbsp;
           em du&nbsp;
           span vil se
-        a.btn.btn-primary.btn-lg(href='/foo') Finn kinovenn &nbsp;
+        a.btn.btn-primary.btn-lg(href='/foo') Finn kinovenn&nbsp;
           span.glyphicon.glyphicon-heart
 
-    //div.jumbotron.slate-backround
-    //  div.container
-    //    h3.text-muted Last ned appen!
+    //-div.jumbotron.slate-backround
+    //-  div.container
+    //-    h3.text-muted Last ned appen!
     script(src='/lib/jquery/jquery.min.js')
     script(src='/lib/angular/angular.min.js')
+    != js('scripts/app')

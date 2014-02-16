@@ -1,6 +1,7 @@
 .idea/
 *.iml
 *.js
+*.html
 *.map
 *.swp
 node_modules/

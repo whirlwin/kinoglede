@@ -11,9 +11,10 @@
     "port": 3000
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
+    "connect-assets": "3.0.0-beta1",
     "express": "3.4.8",
     "jade": "1.1.5",
     "stylus": "0.42.2"
