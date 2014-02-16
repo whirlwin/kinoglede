@@ -1,7 +1,8 @@
-.idea/
 *.iml
 *.js
 *.html
 *.map
 *.swp
+.idea/
+credentials.json
 node_modules/

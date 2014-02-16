@@ -1,3 +1,5 @@
+passport = require 'passport'
+
 class IndexController
 
   index: (req, res) ->
@@ -11,5 +13,11 @@ class IndexController
       else
         res.end html
 
+  logInWithFacebook: (req, res) ->
+    passport.authenticate('facebook')
+
+  onFacebookLoggedIn: (req, res) ->
+    passport.authenticate('facebook',
+      successRedirect: '/', failureRedirect: '/')
 
 module.exports = IndexController

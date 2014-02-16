@@ -14,12 +14,16 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
-    "coffee-script":  "1.7.1",
-    "connect-assets": "3.0.0-beta1",
-    "express":        "3.4.8",
-    "jade":           "1.1.5",
-    "mongoose":       "3.8.7",
-    "stylus":         "0.42.2"
+    "coffee-script":     "1.7.1",
+    "connect-assets":    "3.0.0-beta1",
+    "express":           "3.4.8",
+    "jade":              "1.1.5",
+    "mongoose":          "3.8.7",
+    "passport":          "0.2.0",
+    "passport-facebook": "1.0.2",
+    "q":                 "1.0.0",
+    "stylus":            "0.42.2",
+    "uglify-js":         "2.4.12"
   },
   "devDependencies": {
     "nodemon": "1.0.14"
