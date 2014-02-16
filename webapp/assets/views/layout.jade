@@ -14,18 +14,12 @@ html(ng-app='kinoglede')
           a.btn.btn-primary.btn-sm(href='/') Finn kinovenn&nbsp;
             span.glyphicon.glyphicon-heart
     div.jumbotron
-      div.container
-        h1.red-text kinoglede
-          span.text-muted .no
-        p Finn en kinopartner til filmen&nbsp;
-          em du&nbsp;
-          span vil se
-        a.btn.btn-primary.btn-lg(href='/foo') Finn kinovenn&nbsp;
-          span.glyphicon.glyphicon-heart
+      div.container(ng-view)
 
     //-div.jumbotron.slate-backround
     //-  div.container
     //-    h3.text-muted Last ned appen!
     script(src='/lib/jquery/jquery.min.js')
     script(src='/lib/angular/angular.min.js')
+    script(src='/lib/angular/angular-route.min.js')
     != js('scripts/app')
