@@ -20,6 +20,10 @@ class IndexController
     passport.authenticate('facebook',
       successRedirect: '/', failureRedirect: '/')
 
+  signOutUser: (req, res) ->
+    req.logout()
+    res.redirect '/'
+
   getSignedInUser: (req, res) ->
     res.send req.user
 

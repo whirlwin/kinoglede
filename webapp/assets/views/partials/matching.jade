@@ -1,1 +1,14 @@
-h1 Vis interesse eller gå videre
+h1 Matching
+hr
+div(ng-if='!data.user.id')
+  p
+    a(href='/innlogging') Logg inn
+    |  for å komme i gang
+div.well
+  div.row.text-center
+    div.col-md-1
+      a.btn.btn-danger.btn-lg(href='/') Interessert ♥
+    div.col-md-4
+      div profil
+    div.col-md-1
+      a.btn.btn-warning.btn.btn-lg(href='/') Nei takk ✖
