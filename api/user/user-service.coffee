@@ -13,16 +13,26 @@ class UserService
 
   findOrSaveUser: (profile) ->
     rawLocation = JSON.parse(profile._raw).location
-    location = new Location
-      locationId: rawLocation.id
-      name:       rawLocation.name
+    newLocation = new Location
+      fbLocationId: rawLocation.id
+      name:         rawLocation.name
+    userRepository.findUser(fbId: profile.id).then (user) ->
+      unless user
+        locationRepository.findLocation(fbLocationId: newLocation.fbLocationId).then (location) ->
+          unless location
+            locationRepository.saveLocation(newLocation).then (location) ->
+              saveUser profile, newLocation.id
+          else
+            saveUser profile, newLocation.id
+      else
+        user
 
-    locationRepository.saveLocation(location).then (location) ->
-      user = new User
-        name:       profile.displayName
-        gender:     profile.gender
-        locationId: location.id
-
-      userRepository.findOrSaveUser(user).then (user) ->
+  saveUser = (profile, fbLocationId) ->
+    user = new User
+      fbId:         profile.id
+      name:         profile.displayName
+      gender:       profile.gender
+      fbLocationId: fbLocationId
+    userRepository.saveUser(user).then (user) ->
 
 module.exports = UserService

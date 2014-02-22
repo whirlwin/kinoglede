@@ -1,20 +1,24 @@
-mongoose = require 'mongoose'
-q        = require 'q'
+q    = require 'q'
+User = require './user'
 
 class UserRepository
 
-  findOrSaveUser: (user) ->
+  findUser: (criteria) ->
     deferred = q.defer()
-
-    console.log 'start user repo'
-    user.save (err, user) ->
-      if err
-        console.log 'err::' + err
+    User.findOne criteria, (err, user) ->
+      if (err)
         deferred.reject err
       else
-        console.log 'succ::' + user
         deferred.resolve user
+    deferred.promise
 
+  saveUser: (user) ->
+    deferred = q.defer()
+    user.save (err, user) ->
+      if err
+        deferred.reject err
+      else
+        deferred.resolve user
     deferred.promise
 
 module.exports = UserRepository

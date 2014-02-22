@@ -1,17 +1,24 @@
-q = require 'q'
+q        = require 'q'
+Location = require './location'
 
 class LocationRepository
 
-  saveLocation: (location) ->
+  findLocation: (criteria) ->
     deferred = q.defer()
-
-    location.save (err, location) ->
+    Location.findOne criteria, (err, location) ->
       if err
-        console.log 'err:' + err
         deferred.reject err
       else
         deferred.resolve location
+    deferred.promise
 
+  saveLocation: (location) ->
+    deferred = q.defer()
+    location.save (err, location) ->
+      if err
+        deferred.reject err
+      else
+        deferred.resolve location
     deferred.promise
 
 module.exports = LocationRepository
