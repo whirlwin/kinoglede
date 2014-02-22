@@ -1,20 +1,18 @@
 mongoose = require 'mongoose'
 q        = require 'q'
-User     = require './user'
 
 class UserRepository
 
-  findOrSaveUser: (profile) ->
+  findOrSaveUser: (user) ->
     deferred = q.defer()
 
-    user = new User
-      name:   profile.displayName
-      gender: profile.gender
-
+    console.log 'start user repo'
     user.save (err, user) ->
       if err
+        console.log 'err::' + err
         deferred.reject err
       else
+        console.log 'succ::' + user
         deferred.resolve user
 
     deferred.promise

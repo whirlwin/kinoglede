@@ -4,7 +4,7 @@ div(ng-if='!data.user.id')
   p
     a(href='/innlogging') Logg inn
     |  for å komme i gang
-div.well
+div.well(ng-if='data.user.id')
   div.row.text-center
     div.col-md-1
       a.btn.btn-danger.btn-lg(href='/') Interessert ♥
