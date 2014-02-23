@@ -1,6 +1,3 @@
-async              = require 'async'
-mongoose           = require 'mongoose'
-q                  = require 'q'
 User               = require './user'
 UserRepository     = require './user-repository'
 Location           = require './location/location'
@@ -12,10 +9,7 @@ class UserService
   locationRepository = new LocationRepository()
 
   findOrSaveUser: (profile) ->
-    rawLocation = JSON.parse(profile._raw).location
-    newLocation = new Location
-      fbLocationId: rawLocation.id
-      name:         rawLocation.name
+    newLocation = extractLocation profile
     userRepository.findUser(fbId: profile.id).then (user) ->
       unless user
         locationRepository.findLocation(fbLocationId: newLocation.fbLocationId).then (location) ->
@@ -27,12 +21,18 @@ class UserService
       else
         user
 
+  extractLocation = (profile) ->
+    rawLocation = JSON.parse(profile._raw).location
+    new Location
+      fbLocationId: rawLocation.id
+      name:         rawLocation.name
+
   saveUser = (profile, fbLocationId) ->
-    user = new User
+    userRepository.save new User(
       fbId:         profile.id
       name:         profile.displayName
       gender:       profile.gender
       fbLocationId: fbLocationId
-    userRepository.saveUser(user).then (user) ->
+    )
 
 module.exports = UserService
