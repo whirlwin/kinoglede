@@ -1,16 +1,29 @@
 div(ng-controller='MatchingController', ng-init='init()')
   h1 Matching
+    small  Velg kinopartner
   hr
   div(ng-if='!data.user.id')
     p
       a(href='/innlogging') Logg inn
       |  for å komme i gang
-  div.well(ng-if='data.user.id')
-    div.row.text-center
-      div.col-md-1
+  div(ng-if='data.user.id')
+    div.row
+      div.col-md-5.row
+        div.col-md-5
+          h4 {{data.matchingUsers[0].name}}
+          hr
+          img(ng-src='{{data.matchingUsers[0].fbPictureUrl}}', alt='Profilbilde mangler')
+        div.col-md-6
+          h4 Ønsker å se
+          hr
+          ul.list-group
+            li.list-group-item 1. Foo
+            li.list-group-item 2. Bar
+            li.list-group-item 3. Baz
+            li.list-group-item 4. Qux
+      div.col-md-3.col-md-offset-1.well
+        h4 Jeg er
+        hr
         a.btn.btn-danger.btn-lg(href='/') Interessert ♥
-      div.col-md-4
-        ul(ng-repeat='user in data.matchingUsers')
-          li {{user.name}}
-      div.col-md-1
-        a.btn.btn-warning.btn.btn-lg(href='/') Nei takk ✖
+        hr
+        a.btn.btn-warning.btn.btn-lg(href='/') Ikke interessert ✖

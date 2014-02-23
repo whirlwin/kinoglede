@@ -21,7 +21,7 @@
     "jade":              "1.1.5",
     "mongoose":          "3.8.7",
     "passport":          "0.2.0",
-    "passport-facebook": "1.0.2",
+    "passport-facebook": "git://github.com/whirlwin/passport-facebook.git",
     "q":                 "1.0.0",
     "stylus":            "0.42.2",
     "uglify-js":         "2.4.12"

@@ -9,6 +9,7 @@ class UserService
   locationRepository = new LocationRepository()
 
   findOrSaveUser: (profile) ->
+    console.log JSON.stringify(profile)
     newLocation = extractLocation profile
     userRepository.findUser(fbId: profile.id).then (user) ->
       unless user
@@ -32,10 +33,11 @@ class UserService
       name:         rawLocation.name
 
   saveUser = (profile, fbLocationId) ->
-    userRepository.save new User(
+    userRepository.saveUser new User(
       fbId:         profile.id
       name:         profile.displayName
       gender:       profile.gender
+      fbPictureUrl: profile.photos[0].value.replace /_.\.(.+)/, '_n.$1'
       fbLocationId: fbLocationId
     )
 

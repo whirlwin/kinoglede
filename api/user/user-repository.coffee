@@ -25,6 +25,7 @@ class UserRepository
     deferred = q.defer()
     user.save (err, user) ->
       if err
+        console.error err
         deferred.reject err
       else
         deferred.resolve user

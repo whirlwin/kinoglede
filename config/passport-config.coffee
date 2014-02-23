@@ -1,6 +1,6 @@
-credentials      = require '../credentials'
 passport         = require 'passport'
 passportFacebook = require 'passport-facebook'
+credentials      = require '../credentials'
 UserService      = require '../api/user/user-service'
 
 class PassportConfig
@@ -22,8 +22,9 @@ class PassportConfig
 
     do configureFacebookStrategy = ->
       passport.use new FacebookStrategy(
-        clientID:     credentials.facebook.clientID,
+        clientID:     credentials.facebook.clientID
         clientSecret: credentials.facebook.clientSecret
+        profileFields: ['displayName', 'name', 'gender','location', 'photos']
         callbackURL:  'http://localhost:3000/auth/facebook/callback'
       ,(accessToken, refreshToken, profile, done) ->
         userService.findOrSaveUser(profile).then ->

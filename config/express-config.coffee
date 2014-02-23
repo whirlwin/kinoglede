@@ -21,7 +21,7 @@ class ExpressConfig
     app.use express.session()
     app.use connectAssets(src: './webapp/assets', helperContext: app.locals)
     app.use express.static(APP_ROOT + 'public')
-    app.use stylus.middleware(APP_ROOT + 'public')
+    app.use stylus.middleware(APP_ROOT + 'webapp/assets/styles')
 
     app.configure 'development', ->
       app.use express.errorHandler()

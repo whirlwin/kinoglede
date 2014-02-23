@@ -6,7 +6,7 @@ html(ng-app='kinoglede')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title kinoglede.no
     link(href='/lib/bootstrap/css/bootstrap.min.css', rel='stylesheet')
-    link(href='/custom/main.css', rel='stylesheet')
+    != css('styles/main')
   body(ng-controller='AppController', ng-init='init()')
     div#wrap
       div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
