@@ -1,8 +1,12 @@
 *.iml
-*.js
-*.html
 *.map
 *.swp
 .idea/
+server.js
 credentials.json
 node_modules/
+config/**/*.js
+api/**/*.js
+webapp/**/*.js
+webapp/**/*.css
+webapp/**/*.html
