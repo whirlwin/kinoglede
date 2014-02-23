@@ -21,6 +21,10 @@ class UserService
       else
         user
 
+  findMatchingUsers: (userId) ->
+    # TODO: Implement matching algorithm
+    userRepository.findUsers()
+
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location
     new Location

@@ -1,7 +1,6 @@
-Location = require './location/location'
 mongoose = require 'mongoose'
 
-userSchema     = null
+userSchema = null
 
 class User
   userSchema = new mongoose.Schema

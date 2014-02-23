@@ -1,13 +1,13 @@
-IndexController = require './index-controller'
-UserService     = require './user/user-service'
+ApiController  = require './api-controller'
+UserController = require './user/user-controller'
 
 class ApiRouter
 
-  indexController = new IndexController()
-  userService     = new UserService()
+  apiController  = new ApiController()
+  userController = new UserController()
 
   setUpRoutes: (app) ->
-    app.get '/api', indexController.index
-    app.get '/api/test', userService.findOrSaveUser
+    app.get '/api/users/matches', userController.findMatchingUsers
+    app.get '/api/*',             apiController.handle404
 
 module.exports = ApiRouter

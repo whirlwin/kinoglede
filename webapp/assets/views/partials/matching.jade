@@ -1,14 +1,16 @@
-h1 Matching
-hr
-div(ng-if='!data.user.id')
-  p
-    a(href='/innlogging') Logg inn
-    |  for å komme i gang
-div.well(ng-if='data.user.id')
-  div.row.text-center
-    div.col-md-1
-      a.btn.btn-danger.btn-lg(href='/') Interessert ♥
-    div.col-md-4
-      div profil
-    div.col-md-1
-      a.btn.btn-warning.btn.btn-lg(href='/') Nei takk ✖
+div(ng-controller='MatchingController', ng-init='init()')
+  h1 Matching
+  hr
+  div(ng-if='!data.user.id')
+    p
+      a(href='/innlogging') Logg inn
+      |  for å komme i gang
+  div.well(ng-if='data.user.id')
+    div.row.text-center
+      div.col-md-1
+        a.btn.btn-danger.btn-lg(href='/') Interessert ♥
+      div.col-md-4
+        ul(ng-repeat='user in data.matchingUsers')
+          li {{user.name}}
+      div.col-md-1
+        a.btn.btn-warning.btn.btn-lg(href='/') Nei takk ✖
