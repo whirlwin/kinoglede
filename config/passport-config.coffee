@@ -27,10 +27,15 @@ class PassportConfig
         profileFields: ['displayName', 'name', 'gender','location', 'photos']
         callbackURL:  'http://localhost:3000/auth/facebook/callback'
       ,(accessToken, refreshToken, profile, done) ->
-        userService.findOrSaveUser(profile).then ->
-          done null, profile
+        userService.findOrSaveUser(profile).then (mongoUser) ->
+          done null, getSessionUser(mongoUser)
         .catch (err) ->
           done err
       )
+
+  getSessionUser = (mongoUser) ->
+    mutableUser = mongoUser.toObject()
+    mutableUser.id = mutableUser._id
+    mutableUser
 
 module.exports = PassportConfig
