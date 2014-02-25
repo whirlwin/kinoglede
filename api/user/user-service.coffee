@@ -9,7 +9,6 @@ class UserService
   locationRepository = new LocationRepository()
 
   findOrSaveUser: (profile) ->
-    console.log JSON.stringify(profile)
     newLocation = extractLocation profile
     userRepository.findUser(fbId: profile.id).then (user) ->
       unless user
