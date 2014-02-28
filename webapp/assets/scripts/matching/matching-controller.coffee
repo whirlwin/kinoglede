@@ -15,8 +15,6 @@ App.controller 'MatchingController', ['$scope', 'Users', ($scope, Users) ->
   $scope.currentMatch = ->
     if $scope.data.matchingUsers
       $scope.data.matchingUsers[$scope.data.matchingUsers.length - 1]
-    else
-      false
 
   $scope.approveMatch = (matchingUserId) ->
     Users.approveMatch userId: $scope.data.user.id, matchingUserId: matchingUserId

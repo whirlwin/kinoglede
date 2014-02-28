@@ -1,3 +1,4 @@
+q                  = require 'q'
 User               = require './user'
 UserRepository     = require './user-repository'
 Location           = require './location/location'
@@ -32,12 +33,21 @@ class UserService
       name:         rawLocation.name
 
   saveUser = (profile, fbLocationId) ->
-    userRepository.saveUser new User(
+    deferred = q.defer()
+
+    user = new User(
       fbId:         profile.id
       name:         profile.displayName
       gender:       profile.gender
       fbPictureUrl: profile.photos[0].value.replace /_.\.(.+)/, '_n.$1'
       fbLocationId: fbLocationId
     )
+
+    userRepository.saveUser(user).then (user) ->
+      userRepository.addMatchToUsers(user.id, user.gender).then (numUpdatedUsers) ->
+        userRepository.addMatchesToUser(user.id, user.gender).then (numUpdatedUsers) ->
+          deferred.resolve user
+
+    deferred.promise
 
 module.exports = UserService

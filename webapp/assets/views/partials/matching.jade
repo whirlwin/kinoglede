@@ -24,7 +24,8 @@ div(ng-controller='MatchingController', ng-init='init()')
             li.list-group-item 3. Baz
             li.list-group-item 4. Qux
       div.col-md-3.col-md-offset-1.well
-        h4 Jeg er
+        h4 Jeg er&nbsp;
+          span.label foo
         hr
         a.btn.btn-danger.btn-lg(href='', ng-click='approveMatch(currentMatch()._id)') Interessert ♥
         hr
