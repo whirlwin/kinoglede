@@ -5,7 +5,7 @@ class UserController
   userService = new UserService()
 
   findMatchingUsers: (req, res) ->
-    userService.findMatchingUsers(req.query.userId).then (users) ->
+    userService.findMatchingUsers(req.query.currentUserId).then (users) ->
       res.send users
 
   updateUser: (req, res) ->

@@ -3,8 +3,8 @@ App = angular.module 'kinoglede'
 App.controller 'MatchingController', ['$scope', 'Users', ($scope, Users) ->
 
   $scope.init = ->
-    if $scope.data.user.id
-      $scope.data.matchingUsers = Users.query() #UserService.findMatchingUsers $scope.data.user.id
+    if $scope.data.isLoggedIn()
+      $scope.data.matchingUsers = Users.query currentUserId: $scope.data.user.id
 
   $scope.showMoreMatches = ->
     $scope.data.matchingUsers && $scope.data.matchingUsers.$resolved && $scope.data.matchingUsers.length

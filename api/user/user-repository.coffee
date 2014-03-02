@@ -7,6 +7,7 @@ class UserRepository
     deferred = q.defer()
     User.findOne criteria, (err, user) ->
       if (err)
+        console.error err
         deferred.reject err
       else
         deferred.resolve user
@@ -16,6 +17,7 @@ class UserRepository
     deferred = q.defer()
     User.find criteria, (err, users) ->
       if (err)
+        console.error err
         deferred.reject err
       else
         deferred.resolve users

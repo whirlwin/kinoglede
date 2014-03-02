@@ -22,9 +22,9 @@ class UserService
       else
         user
 
-  findMatchingUsers: (userId) ->
-    # TODO: Implement matching algorithm
-    userRepository.findUsers()
+  findMatchingUsers: (currentUserId) ->
+    matchingCriteria = if currentUserId then _id: ($ne: currentUserId) else null
+    userRepository.findUsers matchingCriteria
 
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location
