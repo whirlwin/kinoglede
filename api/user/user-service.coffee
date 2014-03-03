@@ -26,6 +26,9 @@ class UserService
     matchingCriteria = if currentUserId then _id: ($ne: currentUserId) else null
     userRepository.findUsers matchingCriteria
 
+  rejectMatch: (userId, matchUserId) ->
+    userRepository.deleteMatch userId, matchUserId
+
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location
     new Location

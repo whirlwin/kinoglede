@@ -60,4 +60,16 @@ class UserRepository
             deferred.resolve numUpdatedUsers
     deferred.promise
 
+  deleteMatch: (userId, matchUserId) ->
+    deferred = q.defer()
+
+    User.update (_id: userId), ($pull: matchingUserIds._id: matchUserId), (err, val) ->
+      if err
+        console.error err
+        referred.reject err
+      else
+        deferred.resolve
+
+    deferred.promise
+
 module.exports = UserRepository

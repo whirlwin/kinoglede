@@ -29,4 +29,4 @@ div(ng-controller='MatchingController', ng-init='init()')
         hr
         a.btn.btn-danger.btn-lg(href='', ng-click='approveMatch(currentMatch()._id)') Interessert ♥
         hr
-        a.btn.btn-warning.btn.btn-lg(href='', ng-click='rejectMatch()') Ikke interessert ✖
+        a.btn.btn-warning.btn.btn-lg(href='', ng-click='rejectMatch(currentMatch()._id)') Ikke interessert ✖

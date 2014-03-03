@@ -7,8 +7,9 @@ class ApiRouter
   userController = new UserController()
 
   setUpRoutes: (app) ->
-    app.get '/api/users',         userController.findMatchingUsers
-    app.put '/api/users/:userId', userController.updateUser
-    app.get '/api/*',             apiController.handle404
+    app.get    '/api/users',                    userController.findMatchingUsers
+    app.put    '/api/users/:userId',            userController.updateUser
+    app.delete '/api/users/me/matches/:userId', userController.rejectMatch
+    app.get    '/api/*',                        apiController.handle404
 
 module.exports = ApiRouter
