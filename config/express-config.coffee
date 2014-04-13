@@ -3,13 +3,13 @@ crypto        = require 'crypto'
 express       = require 'express'
 path          = require 'path'
 stylus        = require 'stylus'
-pkg           = require '../package'
+env           = require '../env'
 
 class ExpressConfig
   configure: (ENV) ->
     APP_ROOT = path.join __dirname, '../'
     app = express()
-    app.set 'port', pkg.config.port
+    app.set 'port', env.port
     app.set 'views', APP_ROOT
     app.set 'view engine', 'jade'
     app.use express.favicon()

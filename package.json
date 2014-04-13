@@ -7,9 +7,6 @@
     "url": "http://www.whirlwin.org"
   },
   "license": "MIT",
-  "config": {
-    "port": 3000
-  },
   "scripts": {
     "start": "nodemon server.coffee"
   },
