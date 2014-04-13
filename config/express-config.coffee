@@ -10,7 +10,7 @@ class ExpressConfig
     APP_ROOT = path.join __dirname, '../'
     app = express()
     app.set 'port', pkg.config.port
-    app.set 'views', APP_ROOT + 'webapp'
+    app.set 'views', APP_ROOT
     app.set 'view engine', 'jade'
     app.use express.favicon()
     app.use express.logger('dev')
@@ -19,9 +19,9 @@ class ExpressConfig
     app.use express.methodOverride()
     app.use express.cookieParser(crypto.randomBytes(20).toString 'hex')
     app.use express.session()
-    app.use connectAssets(src: './webapp/assets', helperContext: app.locals)
+    app.use connectAssets(src: './assets', helperContext: app.locals)
     app.use express.static(APP_ROOT + 'public')
-    app.use stylus.middleware(APP_ROOT + 'webapp/assets/styles')
+    app.use stylus.middleware(APP_ROOT + 'assets/styles')
 
     app.configure 'development', ->
       app.use express.errorHandler()

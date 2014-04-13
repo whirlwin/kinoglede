@@ -1,15 +1,13 @@
-ApiRouter      = require '../api/api-router'
 ExpressConfig  = require './express-config'
-PassportConfig = require './passport-config'
 MongooseConfig = require './mongoose-config'
-WebappRouter   = require '../webapp/webapp-router'
+PassportConfig = require './passport-config'
+WebappRouter   = require '../src/router'
 
 class AppConfig
 
   expressConfig  = new ExpressConfig()
   mongooseConfig = new MongooseConfig()
   passportConfig = new PassportConfig()
-  apiRouter      = new ApiRouter()
   webappRouter   = new WebappRouter()
 
   configure: ->
@@ -19,7 +17,6 @@ class AppConfig
     passportConfig.configure app
     mongooseConfig.configure()
 
-    apiRouter.setUpRoutes app
     webappRouter.setUpRoutes app
 
     app

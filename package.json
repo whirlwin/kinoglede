@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "kinoglede",
   "version": "0.0.1",
   "private": true,
   "author": {
@@ -11,7 +11,7 @@
     "port": 3000
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.coffee"
   },
   "dependencies": {
     "async":             "0.2.10",
@@ -27,6 +27,6 @@
     "uglify-js":         "2.4.12"
   },
   "devDependencies": {
-    "nodemon": "1.0.14"
+    "nodemon": "1.0.17"
   }
 }

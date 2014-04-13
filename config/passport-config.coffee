@@ -1,7 +1,7 @@
 passport         = require 'passport'
 passportFacebook = require 'passport-facebook'
 credentials      = require '../credentials'
-UserService      = require '../api/user/user-service'
+UserService      = require '../src/user/user-service'
 
 class PassportConfig
 

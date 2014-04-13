@@ -27,4 +27,7 @@ class IndexController
   getSignedInUser: (req, res) ->
     res.send req.user
 
+  handle404: (req, res) ->
+    res.send 404, 'Not found'
+
 module.exports = IndexController
