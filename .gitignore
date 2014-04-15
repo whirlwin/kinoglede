@@ -1,9 +1,8 @@
-*.iml
-*.map
-*.swp
-.idea/
-server.js
-credentials.json
-src/**/*.js
-node_modules/
 assets/dist/
+assets/libs/
+assets/styles/**/*.css
+assets/styles/**/*.html
+env.json
+node_modules/
+server.js
+src/**/*.js
