@@ -4,9 +4,6 @@
 .idea/
 server.js
 credentials.json
+src/**/*.js
 node_modules/
-config/**/*.js
-api/**/*.js
-webapp/**/*.js
-webapp/**/*.css
-webapp/**/*.html
+assets/dist/

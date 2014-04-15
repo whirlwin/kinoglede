@@ -6,6 +6,7 @@ gulpJade      = require 'gulp-jade'
 gulpMinifyCss = require 'gulp-minify-css'
 gulpStylus    = require 'gulp-stylus'
 gulpUglify    = require 'gulp-uglify'
+fsExtra       = require 'fs-extra'
 env           = require './env'
 
 ASSETS_PATH        = 'assets/'
@@ -14,13 +15,14 @@ CUSTOM_STYLUS_PATH = ASSETS_PATH + 'styles/**/*.styl'
 CUSTOM_JADE_PATH   = ASSETS_PATH + 'views/**/*.jade'
 
 JS_LIBS =
-  "angular":       main: "angular.js",       min: "angular.min.js"
-  "angular-route": main: "angular-route.js", min: "angular-route.min.js"
-  "jquery":        main: "jquery.js",        min: "jquery.min.js"
-  "bootstrap":     main: "js/bootstrap.js",  min: "js/bootstrap.min.js"
+  "angular":          main: "angular.js",           min: "angular.min.js"
+  "angular-resource": main: "angular-resource.js",  min: "angular-resource.min.js"
+  "angular-route":    main: "angular-route.js",     min: "angular-route.min.js"
+  "jquery":           main: "dist/jquery.js",       min: "jquery.min.js"
+  "bootstrap":        main: "dist/js/bootstrap.js", min: "dist/js/bootstrap.min.js"
 
 CSS_LIBS =
-  "bootstrap": main: "css/bootstrap.css", min: "css/bootstrap.min.css"
+  "bootstrap": main: "dist/css/bootstrap.css", min: "dist/css/bootstrap.min.css"
 
 getLibPaths = (libs) ->
   Object.keys(libs).map (libName) ->
@@ -62,6 +64,10 @@ gulp.task 'combineCss', ['customStylus', 'libCss'], ->
     .pipe(gulpConcat('all.css'))
     .pipe(gulp.dest(ASSETS_PATH + '/dist/css/'))
 
+gulp.task 'distributeBootstrapExtras', ->
+  fsExtra.copy "#{ASSETS_PATH}libs/bootstrap/dist/fonts", ASSETS_PATH + '/dist/fonts', (err) ->
+    console.error err if err
+
 gulp.task 'customJade', ->
   gulp.src(CUSTOM_JADE_PATH)
     .pipe(gulpJade())
@@ -69,12 +75,12 @@ gulp.task 'customJade', ->
 
 # Watch for changes, compile source files and combine into the final JS and CSS file
 gulp.task 'watch', ->
-  gulp.watch(CUSTOM_COFFEE_PATH, ['customCoffee', 'combineJs'])
-  gulp.watch(CUSTOM_STYLUS_PATH, ['customStylus', 'combineCss'])
-  gulp.watch(CUSTOM_JADE_PATH,   ['customJade'])
+  gulp.watch CUSTOM_COFFEE_PATH, ['customCoffee', 'combineJs']
+  gulp.watch CUSTOM_STYLUS_PATH, ['customStylus', 'combineCss']
+  gulp.watch CUSTOM_JADE_PATH,   ['customJade']
 
-gulp.task 'default',
-  ['customCoffee', 'libJs', 'customStylus', 'libCss', 'combineJs', 'combineCss', 'customJade', 'watch']
+gulp.task 'build', ['customCoffee', 'libJs', 'customStylus', 'libCss', 'combineJs', 'combineCss',
+                    'distributeBootstrapExtras', 'customJade']
 
-gulp.task 'build',
-  ['customCoffee', 'libJs', 'customStylus', 'libCss', 'combineJs', 'combineCss', 'customJade']
+gulp.task 'default', ['build', 'watch']
+
