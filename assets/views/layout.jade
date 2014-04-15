@@ -5,8 +5,7 @@ html(ng-app='kinoglede')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title kinoglede.no
-    link(href='/lib/bootstrap/css/bootstrap.min.css', rel='stylesheet')
-    != css('styles/main')
+    link(href='dist/css/all.css', rel='stylesheet')
   body(ng-controller='AppController', ng-init='init()')
     div#wrap
       div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
@@ -19,21 +18,8 @@ html(ng-app='kinoglede')
               |  Min profil
       div.jumbotron
         div.container(ng-view)
-
-      //-div.jumbotron.slate-backround
-      //-  div.container
-      //-    h3.text-muted Last ned appen!
-      script(src='/lib/jquery/jquery.min.js')
-      script(src='/lib/angular/angular.min.js')
-      script(src='/lib/angular/angular-route.min.js')
-      script(src='/lib/angular/angular-resource.min.js')
-      != js('scripts/app')
-      != js('scripts/app-controller')
-      != js('scripts/user-service')
-      != js('scripts/matching/matching-controller')
-      != js('scripts/matching/user-factory')
-      != js('scripts/matching/match-factory')
       div.push
     div#footer
       div.container
         p.text-muted 2014 | whirlwin
+    script(src='dist/js/all.js')

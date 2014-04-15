@@ -1,4 +1,3 @@
-connectAssets = require 'connect-assets'
 crypto        = require 'crypto'
 express       = require 'express'
 path          = require 'path'
@@ -19,8 +18,7 @@ class ExpressConfig
     app.use express.methodOverride()
     app.use express.cookieParser(crypto.randomBytes(20).toString 'hex')
     app.use express.session()
-    app.use connectAssets(src: './assets', helperContext: app.locals)
-    app.use express.static(APP_ROOT + 'public')
+    app.use express.static(APP_ROOT + 'assets')
     app.use stylus.middleware(APP_ROOT + 'assets/styles')
 
     app.configure 'development', ->
