@@ -8,7 +8,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.coffee & gulp --require coffee-script/register && fg"
+    "install": "bower install",
+    "start":   "nodemon server.coffee & gulp --require coffee-script/register && fg"
   },
   "dependencies": {
     "async":             "0.2.10",
