@@ -2,7 +2,13 @@ assets/dist/
 assets/libs/
 assets/styles/**/*.css
 assets/styles/**/*.html
+config/**/*.js
+config/**/*.map
 env.json
+gulpfile.js
+gulpfile.map
 node_modules/
 server.js
+server.map
 src/**/*.js
+src/**/*.map
