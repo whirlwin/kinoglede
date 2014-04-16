@@ -1,7 +1,10 @@
-q    = require 'q'
-User = require './user'
+mongoose = require 'mongoose'
+q        = require 'q'
+User     = require './user'
 
 class UserRepository
+
+  ObjectId = mongoose.Types.ObjectId
 
   findUser: (criteria) ->
     deferred = q.defer()
@@ -61,17 +64,14 @@ class UserRepository
     deferred.promise
 
   deleteMatch: (userId, matchUserId) ->
+    console.log userId + ' ' + matchUserId
     deferred = q.defer()
-
-    ###
-    User.update (_id: userId), ($pull: (matchingUserIds._id: matchUserId)), (err, val) ->
+    User.update (_id: userId), $pull: (matchingUserIds: matchUserId), (err) ->
       if err
         console.error err
-        referred.reject err
+        deferred.reject err
       else
-        deferred.resolve
-
+        deferred.resolve()
     deferred.promise
-    ###
 
-module.exports = UserRepository
+module.exports = new UserRepository()

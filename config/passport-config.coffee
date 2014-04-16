@@ -1,12 +1,11 @@
 passport         = require 'passport'
 passportFacebook = require 'passport-facebook'
 env              = require '../env'
-UserService      = require '../src/user/user-service'
+userService      = require '../src/user/user-service'
 
 class PassportConfig
 
   FacebookStrategy = passportFacebook.Strategy
-  userService = new UserService()
 
   configure: (app) ->
 

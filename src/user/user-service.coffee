@@ -1,13 +1,10 @@
 q                  = require 'q'
 User               = require './user'
-UserRepository     = require './user-repository'
+userRepository     = require './user-repository'
 Location           = require './location/location'
-LocationRepository = require './location/location-repository'
+locationRepository = require './location/location-repository'
 
 class UserService
-
-  userRepository     = new UserRepository()
-  locationRepository = new LocationRepository()
 
   findOrSaveUser: (profile) ->
     newLocation = extractLocation profile
@@ -53,4 +50,4 @@ class UserService
 
     deferred.promise
 
-module.exports = UserService
+module.exports = new UserService()

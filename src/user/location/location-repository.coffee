@@ -21,4 +21,4 @@ class LocationRepository
         deferred.resolve location
     deferred.promise
 
-module.exports = LocationRepository
+module.exports = new LocationRepository()

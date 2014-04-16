@@ -1,8 +1,6 @@
-UserService = require './user-service'
+userService = require './user-service'
 
 class UserController
-
-  userService = new UserService()
 
   findMatchingUsers: (req, res) ->
     userService.findMatchingUsers(req.query.currentUserId).then (users) ->
@@ -12,6 +10,7 @@ class UserController
     res.send 'OK'
 
   rejectMatch: (req, res) ->
-    userService.rejectMatch(req.user.id, req.query.userId).then (val) ->
+    userService.rejectMatch(req.user.id, req.params.userId).then ->
+      res.send 'OK'
 
 module.exports = UserController

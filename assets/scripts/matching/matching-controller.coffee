@@ -21,7 +21,7 @@ App.controller 'MatchingController', ['$scope', 'Users', 'Matches', ($scope, Use
 
   $scope.rejectMatch = (matchUserId) ->
     console.log matchUserId
-    Matches.reject(currentUserId: $scope.data.user.id, matchUserId: matchUserId).$promise.then (data) ->
+    Matches.reject(matchUserId: matchUserId).$promise.then (data) ->
       console.log 'DATA: ' + data
       $scope.data.matchingUsers.pop()
 ]
