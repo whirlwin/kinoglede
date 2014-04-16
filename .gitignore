@@ -3,7 +3,10 @@ assets/libs/
 assets/styles/**/*.css
 assets/styles/**/*.html
 env.json
+gulpfile.js
+gulpfile.map
 node_modules/
 server.js
+server.map
 src/**/*.js
 src/**/*.map
