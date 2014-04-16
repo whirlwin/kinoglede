@@ -27,4 +27,4 @@ class ExpressConfig
 
     app
 
-module.exports = ExpressConfig
+module.exports = new ExpressConfig()

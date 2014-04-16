@@ -1,14 +1,9 @@
-ExpressConfig  = require './express-config'
-MongooseConfig = require './mongoose-config'
-PassportConfig = require './passport-config'
-WebappRouter   = require '../src/router'
+expressConfig  = require './express-config'
+mongooseConfig = require './mongoose-config'
+passportConfig = require './passport-config'
+router         = require '../src/router'
 
 class AppConfig
-
-  expressConfig  = new ExpressConfig()
-  mongooseConfig = new MongooseConfig()
-  passportConfig = new PassportConfig()
-  webappRouter   = new WebappRouter()
 
   configure: ->
     ENV = process.env.ENV
@@ -17,8 +12,8 @@ class AppConfig
     passportConfig.configure app
     mongooseConfig.configure()
 
-    webappRouter.setUpRoutes app
+    router.setUpRoutes app
 
     app
 
-module.exports = AppConfig
+module.exports = new AppConfig()

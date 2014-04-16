@@ -30,4 +30,4 @@ class IndexController
   handle404: (req, res) ->
     res.send 404, 'Not found'
 
-module.exports = IndexController
+module.exports = new IndexController()

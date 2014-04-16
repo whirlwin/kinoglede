@@ -8,4 +8,4 @@ class MongooseConfig
       else
         console.log 'Connected to MongoDB'
 
-module.exports = MongooseConfig
+module.exports = new MongooseConfig()

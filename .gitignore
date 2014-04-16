@@ -8,6 +8,7 @@ env.json
 gulpfile.js
 gulpfile.map
 node_modules/
+npm-debug.log
 server.js
 server.map
 src/**/*.js

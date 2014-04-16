@@ -13,4 +13,4 @@ class UserController
     userService.rejectMatch(req.user.id, req.params.userId).then ->
       res.send 'OK'
 
-module.exports = UserController
+module.exports = new UserController()

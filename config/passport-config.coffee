@@ -37,4 +37,4 @@ class PassportConfig
     mutableUser.id = mutableUser._id
     mutableUser
 
-module.exports = PassportConfig
+module.exports = new PassportConfig()
