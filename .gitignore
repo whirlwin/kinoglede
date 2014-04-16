@@ -6,3 +6,4 @@ env.json
 node_modules/
 server.js
 src/**/*.js
+src/**/*.map
