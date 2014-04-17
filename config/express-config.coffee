@@ -1,8 +1,13 @@
-crypto        = require 'crypto'
-express       = require 'express'
-path          = require 'path'
-stylus        = require 'stylus'
-env           = require '../env'
+cookieParser   = require 'cookie-parser'
+crypto         = require 'crypto'
+express        = require 'express'
+expressSession = require 'express-session'
+errorhandler   = require 'errorhandler'
+methodOverride = require 'method-override'
+morgan         = require 'morgan'
+path           = require 'path'
+stylus         = require 'stylus'
+env            = require '../env'
 
 class ExpressConfig
   configure: (ENV) ->
@@ -11,18 +16,15 @@ class ExpressConfig
     app.set 'port', env.port
     app.set 'views', APP_ROOT
     app.set 'view engine', 'jade'
-    app.use express.favicon()
-    app.use express.logger('dev')
-    app.use express.json()
-    app.use express.urlencoded()
-    app.use express.methodOverride()
-    app.use express.cookieParser(crypto.randomBytes(20).toString 'hex')
-    app.use express.session()
+    app.use morgan('dev')
+    app.use methodOverride()
+    app.use cookieParser(crypto.randomBytes(20).toString 'hex')
+    app.use expressSession()
     app.use express.static(APP_ROOT + 'assets')
     app.use stylus.middleware(APP_ROOT + 'assets/styles')
+    app.use errorhandler()
 
-    app.configure 'development', ->
-      app.use express.errorHandler()
+    unless env.compressed
       app.locals.pretty = true
 
     app
