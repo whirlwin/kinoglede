@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "install": "bower install",
-    "start":   "gulp --require coffee-script/register & nodemon server.coffee && fg"
+    "start":   "gulp --require coffee-script/register & nodemon server.coffee"
   },
   "dependencies": {
     "async":             "0.2.10",

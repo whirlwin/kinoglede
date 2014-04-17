@@ -3,6 +3,7 @@ User               = require './user'
 userRepository     = require './user-repository'
 Location           = require './location/location'
 locationRepository = require './location/location-repository'
+matchService       = require './match/match-service'
 
 class UserService
 
@@ -23,8 +24,7 @@ class UserService
     matchingCriteria = if currentUserId then _id: ($ne: currentUserId) else null
     userRepository.findUsers matchingCriteria
 
-  rejectMatch: (userId, matchUserId) ->
-    userRepository.deleteMatch userId, matchUserId
+  rejectMatch: (userId, matchUserId) -> matchService.rejectMatch userId, matchUserId
 
   addMovie: (userId, movieId) ->
     userRepository.addMovie userId, movieId
@@ -47,8 +47,8 @@ class UserService
     )
 
     userRepository.saveUser(user).then (user) ->
-      userRepository.addMatchToUsers(user.id, user.gender).then (numUpdatedUsers) ->
-        userRepository.addMatchesToUser(user.id, user.gender).then (numUpdatedUsers) ->
+      matchService.addMatchToUsers(user.id, user.gender).then (numUpdatedUsers) ->
+        matchService.addMatchesToUser(user.id, user.gender).then (numUpdatedUsers) ->
           deferred.resolve user
 
     deferred.promise

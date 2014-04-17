@@ -5,7 +5,7 @@ App.controller 'MatchController', ['$scope', 'UserService', 'Matches', ($scope, 
   $scope.init = ->
     if $scope.data.isLoggedIn()
       console.log UserService
-      $scope.data.matchingUsers = UserService.getUsers currentUserId: $scope.data.user.id
+      $scope.data.matchingUsers = Matches.findMatchingUsers()
 
   $scope.showMoreMatches = ->
     $scope.data.matchingUsers && $scope.data.matchingUsers.$resolved && $scope.data.matchingUsers.length

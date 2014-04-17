@@ -1,9 +1,7 @@
 div(ng-controller='ProfileController')
   div(ng-if='data.isLoggedIn()')
-    div.row
-      div.col-md-3
-        h3 {{data.user.name}}
-          small Profilside
+    h3 {{data.user.name}}
+      small Profilside
     hr.black-border
     div(ng-if='data.user.movies.length')
       div.alert.alert-info
@@ -15,8 +13,8 @@ div(ng-controller='ProfileController')
     h3 Går på kino nå
     ul.media-list.list-inline
       li.media(ng-repeat='movie in data.movies')
-        a(href='', ng-click='')
-          img(ng-src='{{movie.imageUrl}}', width='50%', height='50%', alt='Bilde')
+        a(href='', ng-click='addMovie()')
+          img.opaque(ng-src='{{movie.imageUrl}}', width='50%', height='50%', alt='Bilde')
           h5 {{movie.title}}
     form(action='/users/me/session', method='POST')
       input.btn.btn-danger(type='submit', value='Logg ut')
