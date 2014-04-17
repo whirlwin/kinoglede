@@ -18,7 +18,7 @@ JS_LIBS =
   "angular":          main: "angular.js",           min: "angular.min.js"
   "angular-resource": main: "angular-resource.js",  min: "angular-resource.min.js"
   "angular-route":    main: "angular-route.js",     min: "angular-route.min.js"
-  "jquery":           main: "dist/jquery.js",       min: "jquery.min.js"
+  "jquery":           main: "dist/jquery.js",       min: "dist/jquery.min.js"
   "bootstrap":        main: "dist/js/bootstrap.js", min: "dist/js/bootstrap.min.js"
 
 CSS_LIBS =
@@ -79,8 +79,7 @@ gulp.task 'watch', ->
   gulp.watch CUSTOM_STYLUS_PATH, ['customStylus', 'combineCss']
   gulp.watch CUSTOM_JADE_PATH,   ['customJade']
 
-gulp.task 'build', ['customCoffee', 'libJs', 'customStylus', 'libCss', 'combineJs', 'combineCss',
-                    'distributeBootstrapExtras', 'customJade']
+gulp.task 'build', ['customCoffee', 'libJs', 'customStylus', 'libCss', 'combineJs', 'combineCss', 'distributeBootstrapExtras', 'customJade']
 
 gulp.task 'default', ['build', 'watch']
 
