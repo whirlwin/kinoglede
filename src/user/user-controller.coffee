@@ -7,10 +7,13 @@ class UserController
       res.send users
 
   updateUser: (req, res) ->
-    res.send 'OK'
+    res.send 200
 
   rejectMatch: (req, res) ->
     userService.rejectMatch(req.user.id, req.params.userId).then ->
-      res.send 'OK'
+      res.send 200
+
+  addMovie: (req, res) ->
+
 
 module.exports = new UserController()

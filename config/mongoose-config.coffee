@@ -1,4 +1,5 @@
-mongoose = require 'mongoose'
+mongoose          = require 'mongoose'
+dummyMovieUtility = require './utilities/dummy-movie-utility'
 
 class MongooseConfig
   configure: ->
@@ -7,5 +8,6 @@ class MongooseConfig
         console.error 'Failed to connect to MongoDB: ' + err
       else
         console.log 'Connected to MongoDB'
+        dummyMovieUtility.insertDummyMovies()
 
 module.exports = new MongooseConfig()

@@ -1,10 +1,11 @@
 App = angular.module 'kinoglede'
 
-App.controller 'MatchingController', ['$scope', 'Users', 'Matches', ($scope, Users, Matches) ->
+App.controller 'MatchController', ['$scope', 'UserService', 'Matches', ($scope, UserService, Matches) ->
 
   $scope.init = ->
     if $scope.data.isLoggedIn()
-      $scope.data.matchingUsers = Users.query currentUserId: $scope.data.user.id
+      console.log UserService
+      $scope.data.matchingUsers = UserService.getUsers currentUserId: $scope.data.user.id
 
   $scope.showMoreMatches = ->
     $scope.data.matchingUsers && $scope.data.matchingUsers.$resolved && $scope.data.matchingUsers.length
@@ -17,10 +18,9 @@ App.controller 'MatchingController', ['$scope', 'Users', 'Matches', ($scope, Use
       $scope.data.matchingUsers[$scope.data.matchingUsers.length - 1]
 
   $scope.approveMatch = (matchingUserId) ->
-    Users.approveMatch userId: $scope.data.user.id, matchingUserId: matchingUserId
+    Matches.approveMatch matchingUserId: matchingUserId
 
   $scope.rejectMatch = (matchUserId) ->
-    console.log matchUserId
     Matches.reject(matchUserId: matchUserId).$promise.then (data) ->
       console.log 'DATA: ' + data
       $scope.data.matchingUsers.pop()

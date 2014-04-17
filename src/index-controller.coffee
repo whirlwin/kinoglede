@@ -25,7 +25,10 @@ class IndexController
     res.redirect '/'
 
   getSignedInUser: (req, res) ->
-    res.send req.user
+    if req.user
+      res.send req.user
+    else
+      res.send 401
 
   handle404: (req, res) ->
     res.send 404, 'Not found'

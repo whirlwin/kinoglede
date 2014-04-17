@@ -26,6 +26,9 @@ class UserService
   rejectMatch: (userId, matchUserId) ->
     userRepository.deleteMatch userId, matchUserId
 
+  addMovie: (userId, movieId) ->
+    userRepository.addMovie userId, movieId
+
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location
     new Location

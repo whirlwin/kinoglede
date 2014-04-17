@@ -1,7 +1,7 @@
-div(ng-controller='MatchingController', ng-init='init()')
+div(ng-controller='MatchController', ng-init='init()')
   h1 Matching
     small  Velg kinopartner
-  hr
+  hr.black-border
   div(ng-if='!data.isLoggedIn()')
     p
       a(href='/innlogging') Logg inn

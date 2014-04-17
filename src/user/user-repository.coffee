@@ -64,9 +64,18 @@ class UserRepository
     deferred.promise
 
   deleteMatch: (userId, matchUserId) ->
-    console.log userId + ' ' + matchUserId
     deferred = q.defer()
     User.update (_id: userId), $pull: (matchingUserIds: matchUserId), (err) ->
+      if err
+        console.error err
+        deferred.reject err
+      else
+        deferred.resolve()
+    deferred.promise
+
+  addMovie: (userId, movieId) ->
+    deferred = q.defer()
+    User.update (_id: userId), $push: (movies: movieId), (err) ->
       if err
         console.error err
         deferred.reject err

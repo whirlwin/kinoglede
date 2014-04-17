@@ -7,6 +7,6 @@ App.config ['$locationProvider', '$routeProvider', ($locationProvider, $routePro
     .when('/_=_',        redirectTo:  '/') # On Facebook sign in
     .when('/innlogging', templateUrl: '/partials/login')
     .when('/min-profil', templateUrl: '/partials/profile')
-    .when('/matching',   templateUrl: '/partials/matching')
+    .when('/matching',   templateUrl: '/partials/match')
     .otherwise(          templateUrl: '/partials/404')
 ]
