@@ -5,9 +5,9 @@ class MongooseConfig
   configure: ->
     mongoose.connect 'mongodb://localhost/kinoglede', (err) ->
       if err
-        console.error 'Failed to connect to MongoDB: ' + err
+        logger.error 'Failed to connect to MongoDB: ' + err
       else
-        console.log 'Connected to MongoDB'
+        logger.info 'Connected to MongoDB'
         dummyMovieUtility.insertDummyMovies()
 
 module.exports = new MongooseConfig()

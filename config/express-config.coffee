@@ -10,13 +10,13 @@ stylus         = require 'stylus'
 env            = require '../env'
 
 class ExpressConfig
-  configure: (ENV) ->
+  configure: ->
     APP_ROOT = path.join __dirname, '../'
     app = express()
     app.set 'port', env.port
     app.set 'views', APP_ROOT
     app.set 'view engine', 'jade'
-    app.use morgan('dev')
+    app.use morgan(env.logType)
     app.use methodOverride()
     app.use cookieParser(crypto.randomBytes(20).toString 'hex')
     app.use expressSession()

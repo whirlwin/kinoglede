@@ -13,6 +13,7 @@ Create an `env.json` file, and update the attributes
     {
       "port": 3000,
       "compressed": false,
+      "logType": "dev",
       "facebook": {
         "clientID":     "foo",
         "clientSecret": "bar"
