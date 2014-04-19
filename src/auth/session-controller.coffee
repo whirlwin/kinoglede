@@ -8,6 +8,6 @@ class SessionController
     if req.user
       res.send req.user
     else
-      res.send 401
+      res.send 204
 
 module.exports = new SessionController()

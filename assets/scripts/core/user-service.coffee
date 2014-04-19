@@ -5,5 +5,4 @@ angular.module('kinoglede').service 'UserService', ['$resource', ($resource) ->
   getMatchingUsers: -> $resource('/users').query()
 
   signOutUser: -> $resource('/users/me/session').delete()
-
 ]

@@ -7,13 +7,15 @@ div(ng-controller='ProfileController')
       div.alert.alert-info
         strong Sortere filmliste:
         span  Filmlisten kan sorteres slik at du de filmene du liker best havner øverst
+    ul.list-group
+      li.list-group-item(ng-repeat='movie in data.user.movies | unique: "_id"') {{movie.title}}
     div(ng-if='!data.user.movies.length')
       div.alert.alert-info
-        p Velg kinofilmer fra listen under du vil se
+        p Velg kinofilmer du vil se
     h3 Går på kino nå
     ul.media-list.list-inline
       li.media(ng-repeat='movie in data.movies')
-        a(href='', ng-click='addMovie()')
+        a(href='', ng-click='addMovie(movie)')
           img.opaque(ng-src='{{movie.imageUrl}}', width='50%', height='50%', alt='Bilde')
           h5 {{movie.title}}
     form(action='/users/me/session', method='POST')

@@ -1,8 +1,9 @@
-angular.module('kinoglede').controller 'ProfileController', ['$scope', 'Movies', ($scope, Movies) ->
+angular.module('kinoglede').controller 'ProfileController', ['$scope', 'Movies', 'MovieService', ($scope, Movies, MovieService) ->
 
   if $scope.data.isLoggedIn()
     $scope.data.movies = Movies.query()
 
-  addMovie = (movieId) ->
-
+  $scope.addMovie = (movie) ->
+    $scope.data.user.movies.push movie
+    MovieService.addMovie($scope.data.user.movies, movie)
 ]
