@@ -18,8 +18,6 @@ JS_LIBS =
   "angular":          main: "angular.js",           min: "angular.min.js"
   "angular-resource": main: "angular-resource.js",  min: "angular-resource.min.js"
   "angular-route":    main: "angular-route.js",     min: "angular-route.min.js"
-  "jquery":           main: "dist/jquery.js",       min: "dist/jquery.min.js"
-  "bootstrap":        main: "dist/js/bootstrap.js", min: "dist/js/bootstrap.min.js"
 
 CSS_LIBS =
   "bootstrap": main: "dist/css/bootstrap.css", min: "dist/css/bootstrap.min.css"
