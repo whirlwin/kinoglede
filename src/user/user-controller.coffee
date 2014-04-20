@@ -14,6 +14,8 @@ class UserController
       res.send 200
 
   addMovie: (req, res) ->
+    userService.addMovie(req.user.id, req.params.movieId).then ->
+      res.send 200
 
 
 module.exports = new UserController()

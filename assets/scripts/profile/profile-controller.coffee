@@ -4,6 +4,5 @@ angular.module('kinoglede').controller 'ProfileController', ['$scope', 'Movies',
     $scope.data.movies = Movies.query()
 
   $scope.addMovie = (movie) ->
-    $scope.data.user.movies.push movie
     MovieService.addMovie($scope.data.user.movies, movie)
 ]

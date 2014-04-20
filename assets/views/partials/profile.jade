@@ -8,7 +8,9 @@ div(ng-controller='ProfileController')
         strong Sortere filmliste:
         span  Filmlisten kan sorteres slik at du de filmene du liker best havner øverst
     ul.list-group
-      li.list-group-item(ng-repeat='movie in data.user.movies | unique: "_id"') {{movie.title}}
+      li.list-group-item(ng-repeat='movie in data.user.movies | movieFilter :data.movies')
+        strong {{$index + 1}}.
+        span  {{movie.title}}
     div(ng-if='!data.user.movies.length')
       div.alert.alert-info
         p Velg kinofilmer du vil se

@@ -38,7 +38,7 @@ class UserRepository
 
   addMovie: (userId, movieId) ->
     deferred = q.defer()
-    User.update (_id: userId), $push: (movies: movieId), (err) ->
+    User.update (_id: userId), $addToSet: (movies: movieId), (err) ->
       if err
         console.error err
         deferred.reject err
