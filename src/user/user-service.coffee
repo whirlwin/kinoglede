@@ -4,6 +4,7 @@ userRepository     = require './user-repository'
 Location           = require './location/location'
 locationRepository = require './location/location-repository'
 matchService       = require './match/match-service'
+movieService       = require '../movie/movie-service'
 
 class UserService
 
@@ -27,7 +28,9 @@ class UserService
   rejectMatch: (userId, matchUserId) -> matchService.rejectMatch userId, matchUserId
 
   addMovie: (userId, movieId) ->
-    userRepository.addMovie userId, movieId
+    movieService.getMovie(movieId).then (movie) ->
+      if movie?
+        userRepository.addMovie userId, movieId
 
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location
