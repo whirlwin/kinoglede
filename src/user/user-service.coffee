@@ -29,8 +29,15 @@ class UserService
 
   addMovie: (userId, movieId) ->
     movieService.getMovie(movieId).then (movie) ->
-      if movie?
-        userRepository.addMovie userId, movieId
+      userRepository.addMovie userId, movieId if movie?
+
+  moveMovie: (userId, movieId, direction) ->
+    userRepository.findUser(_id: userId).then (user) ->
+      userMovies = user.movies
+      fromIndex = userMovies.indexOf movieId
+      toIndex = if direction == 'up' then fromIndex + 1 else fromIndex - 1
+      userMovies.splice toIndex, 0, userMovies.splice(fromIndex, 1)[0]
+      userRepository.addMovies userId, movieIds,
 
   extractLocation = (profile) ->
     rawLocation = JSON.parse(profile._raw).location

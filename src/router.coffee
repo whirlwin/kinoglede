@@ -13,7 +13,8 @@ class Router
     app.get    '/users/me',                 sessionController.getSignedInUser
     app.get    '/users/me/matches',         userController.findMatchingUsers
     app.delete '/users/me/matches/:userId', userController.rejectMatch
-    app.put    '/users/me/movies/:movieId', userController.addMovie
+    app.post   '/users/me/movies/:movieId', userController.addMovie
+    app.put    '/users/me/movies/:movieId', userController.moveMovie
     app.post   '/users/me/session',         sessionController.signOutUser
     app.get    '/auth/facebook',            facebookController.authenticate()
     app.get    '/auth/facebook/callback',   facebookController.authenticationCallback()

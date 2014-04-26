@@ -17,5 +17,8 @@ class UserController
     userService.addMovie(req.user.id, req.params.movieId).then ->
       res.send 200
 
+  moveMovie: (req, res) ->
+    userService.moveMovie(req.user.id, req.params.movieId, req.query.direction).then ->
+      res.send 200
 
 module.exports = new UserController()
