@@ -3,10 +3,15 @@ angular.module('kinoglede').service 'ProfileService', ['$http', ($http) ->
   getMovies: -> $http.get('/movies')
 
   transformUserMovies: (userMovies, movies) ->
-    userMovies = (movie for movie in movies when userMovies.indexOf(movie._id) != -1)
+    newUserMovies = []
+    userMovies.forEach (userMovie) ->
+      movies.forEach (movie) ->
+        if userMovie == movie._id
+          newUserMovies.push movie
+    newUserMovies
 
   addMovie: (userMovies, movie) ->
-    hasMovie = !!(userMovie for userMovie in userMovies when userMovie._id == movie._id).length
+    hasMovie = (userMovie for userMovie in userMovies when userMovie._id == movie._id).length
     unless hasMovie
       userMovies.push movie
       $http.post '/users/me/movies/' + movie._id

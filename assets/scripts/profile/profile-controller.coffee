@@ -4,7 +4,6 @@ angular.module('kinoglede').controller 'ProfileController', ['$scope', '$filter'
     ProfileService.getMovies().success (movies) ->
       $scope.data.movies = movies
       $scope.data.user.movies = ProfileService.transformUserMovies $scope.data.user.movies, movies
-      console.log $scope.data.user.movies
 
   $scope.addMovie = (movie)  ->
     ProfileService.addMovie $scope.data.user.movies, movie

@@ -46,4 +46,14 @@ class UserRepository
         deferred.resolve()
     deferred.promise
 
+  addMovies: (userId, movieIds) ->
+    deferred = q.defer()
+    User.update (_id: userId), (movies: movieIds), (err) ->
+      if err
+        logger.error err
+        deferred.reject err
+      else
+        deferred.resolve()
+    deferred.promise
+
 module.exports = new UserRepository()
