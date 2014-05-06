@@ -6,8 +6,7 @@ angular.module('kinoglede').service 'ProfileService', ['$http', ($http) ->
     newUserMovies = []
     userMovies.forEach (userMovie) ->
       movies.forEach (movie) ->
-        if userMovie == movie._id
-          newUserMovies.push movie
+        newUserMovies.push movie if userMovie == movie._id
     newUserMovies
 
   addMovie: (userMovies, movie) ->
@@ -17,13 +16,13 @@ angular.module('kinoglede').service 'ProfileService', ['$http', ($http) ->
       $http.post '/users/me/movies/' + movie._id
 
   handleMoveMovieUp: (userMovies, $index) ->
-    if $index != 0
-      userMovieId = userMovies[$index]._id
-      toIndex = $index - 1
-      userMovies.splice toIndex, 0, userMovies.splice($index, 1)[0]
-      $http.put "/users/me/movies/#{userMovieId}?direction=up"
+    handleMoveMovie userMovies, $index, $index, 'up' if $index != 0
 
   handleMoveMovieDown: (userMovies, $index) ->
-    if $index != userMovies.length - 1
-      userMovies.splice $index + 1, 0, userMovies.splice($index, 1)[0]
+    handleMoveMovie userMovies, $index, $index + 1, 'down' if $index != userMovies.length - 1
+
+  handleMoveMovie = (userMovies, $index, insertAt, direction) ->
+    userMovieId = userMovies[$index]._id
+    userMovies.splice insertAt, 0, userMovies.splice($index, 1)[0]
+    $http.put "/users/me/movies/#{userMovieId}?direction=#{direction}}"
 ]

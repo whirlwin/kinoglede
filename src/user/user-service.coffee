@@ -33,14 +33,10 @@ class UserService
 
   moveMovie: (userId, movieId, direction) ->
     userRepository.findUser(_id: userId).then (user) ->
-      console.log user.movies
       userMovies = user.movies
       fromIndex = userMovies.indexOf movieId
-      console.log 'from index: ' +fromIndex
-      toIndex = if direction == 'up' then fromIndex + 1 else fromIndex - 1
-      console.log 'to index: ' +toIndex
+      toIndex = if direction == 'up' then fromIndex - 1 else fromIndex + 1
       userMovies.splice toIndex, 0, userMovies.splice(fromIndex, 1)[0]
-      console.log user.movies
       userRepository.addMovies userId, userMovies,
 
   extractLocation = (profile) ->
